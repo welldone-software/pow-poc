@@ -1,0 +1,26 @@
+{
+  "sidebars": {
+    "left": true,
+    "right": true
+  },
+  "title": "The document title",
+  "slides": [
+    {
+      "id": "slide1454351066997",
+      "title": "my experience"
+    },
+    {
+      "id": "slide1454353663931",
+      "title": "New slide"
+    },
+    {
+      "id": "slide1454351318728",
+      "title": "explain about redux"
+    }
+  ],
+  "currentSlide": {
+    "id": "slide1454353663931",
+    "title": "New slide",
+    "items": []
+  }
+}

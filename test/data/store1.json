@@ -1,0 +1,49 @@
+{
+  "sidebars": {
+    "left": true,
+    "right": true
+  },
+  "title": "The document title",
+  "slides": [
+    {
+      "id": "slide1454351066997",
+      "title": "my experience"
+    },
+    {
+      "id": "slide1454351318728",
+      "title": "explain about redux"
+    }
+  ],
+  "currentSlide": {
+    "id": "slide1454351066997",
+    "title": "my experience",
+    "items": [
+      {
+        "kind": "rect",
+        "id": "item1454351296623",
+        "color": "red",
+        "x": 16,
+        "y": 128.125,
+        "h": 60,
+        "w": 60
+      },
+      {
+        "kind": "circle",
+        "id": "item1454351298208",
+        "color": "red",
+        "x": 12,
+        "y": 19.125,
+        "r": 30
+      },
+      {
+        "kind": "rect",
+        "id": "item1454351306656",
+        "color": "red",
+        "x": 172,
+        "y": 18.125,
+        "h": 60,
+        "w": 60
+      }
+    ]
+  }
+}

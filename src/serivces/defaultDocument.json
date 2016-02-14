@@ -1,0 +1,26 @@
+{
+  "title": "demo doc",
+  "slides":[{
+    "id": "slide0",
+    "title": "slide 0 title",
+    "items": [{
+      "id": "item0",
+      "kind": "circle",
+      "x": 10,
+      "y": 10,
+      "r": 30,
+      "color": "red"
+    }]
+  },{
+    "id": "slide1",
+    "title": "slide 1 title",
+    "items": [{
+      "id": "item0",
+      "kind": "circle",
+      "x": 100,
+      "y": 50,
+      "r": 30,
+      "color": "red"
+    }]
+  }]
+}
