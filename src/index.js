@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import DevTools from './components/DevTools'
 import App from './components/App'
 
-import './style.less';
+import './style.less'
 
 render(
     <Provider store={store}>

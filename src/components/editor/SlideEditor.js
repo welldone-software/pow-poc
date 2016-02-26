@@ -2,8 +2,8 @@ import React from 'react'
 import {DropTarget} from 'react-dnd'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import * as actions from '../../store/actions'; //{addItem, removeItem, changeItem, setCurrSlideTitle}
-import $ from 'jquery';
+import * as actions from '../../store/actions' //{addItem, removeItem, changeItem, setCurrSlideTitle}
+//import $ from 'jquery'
 import InlineEdit from 'react-edit-inline'
 import SlideEditorItem from './SlideEditorItem'
 import SlideEditorSlide from './SlideEditorSlide'
@@ -17,27 +17,31 @@ import RecycleBin from './RecycleBin'
  * Dropping a toolbox item on it results in creating a new slide item at the place of the drop.
  * Dropping a slide onto the editor will make it the active (currently edited) slide.
  */
-class SlideEditor extends React.Component {
+@connect(
+  state => ({currentSlide: state.currentSlide}),
+  dispatch => ({actions: bindActionCreators(actions, dispatch)})
+)
+export default class SlideEditor extends React.Component {
 
     state = {
-        isRecycleBinHot: false
+      isRecycleBinHot: false
     };
 
     onRecycleBinHot = (isRecycleBinHot) => {
-        this.setState({isRecycleBinHot})
+      this.setState({isRecycleBinHot})
     };
 
     render() {
 
-        console.log('this.state', this.state);
+      console.log('this.state', this.state)
 
-        const {currentSlide, actions} = this.props;
-        const {id, title} = currentSlide;
-        const onTiltleChange = (data) => actions.setSlideTitle(id, data.title);
-        const {isRecycleBinHot} = this.state || {}
-        const recycleBinWrapClassName = `recycle-bin-wrap ${isRecycleBinHot? 'is-hot' : ''}`;
+      const {currentSlide, actions} = this.props
+      const {id, title} = currentSlide
+      const onTiltleChange = (data) => actions.setSlideTitle(id, data.title)
+      const {isRecycleBinHot} = this.state || {}
+      const recycleBinWrapClassName = `recycle-bin-wrap ${isRecycleBinHot? 'is-hot' : ''}`
 
-        return (
+      return (
             <div className="slideeditor">
                 <h3><InlineEdit text={title} paramName="title" change={onTiltleChange}/></h3>
                 <SlideEditorSlide slide={currentSlide} actions={actions}/>
@@ -49,26 +53,3 @@ class SlideEditor extends React.Component {
     }
 }
 
-//
-// redux connectivity
-//
-
-
-function mapStateToProps(state) {
-    return {
-        currentSlide: state.currentSlide
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(actions, dispatch)
-    }
-}
-
-const ReduxDndSlideEditor = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SlideEditor)
-
-export default ReduxDndSlideEditor

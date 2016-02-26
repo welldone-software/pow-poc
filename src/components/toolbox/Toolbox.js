@@ -9,7 +9,7 @@ const ToolboxItemKinds = ['circle', 'rect']
 export default class Toolbox extends React.Component {
 
     render() {
-        return (
+      return (
             <div className="toolbox">
                 <ul>
                     {ToolboxItemKinds.map(k => <ToolboxItem key={k} kind={k}/>)}

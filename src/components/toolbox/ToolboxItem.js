@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes} from 'react'
 import {DragSource} from 'react-dnd'
 
 /**
@@ -8,31 +8,30 @@ import {DragSource} from 'react-dnd'
  */
 class ToolboxItem extends React.Component {
 
-    static propTypes = {
-        connectDragSource: PropTypes.func.isRequired,
-        isDragging: PropTypes.bool.isRequired,
-        kind: PropTypes.string.isRequired
-    };
+  static propTypes = {
+    connectDragSource: PropTypes.func.isRequired,
+    isDragging: PropTypes.bool.isRequired,
+    kind: PropTypes.string.isRequired
+  };
 
-    render() {
+  render() {
 
-        const {
-            connectDragSource,
-            isDragging,
-            kind
-            } = this.props;
+    const {
+        connectDragSource,
+        isDragging,
+        kind
+     } = this.props
 
-        const itemClassName = `toolbox-item opaque-${!isDragging}` // ${isDragging ? 'is-dragging' : ''}
-        const shapeClassName = `toolbox-item-shape kind-${kind}`
+    const itemClassName = `toolbox-item opaque-${!isDragging}` // ${isDragging ? 'is-dragging' : ''}
+    const shapeClassName = `toolbox-item-shape kind-${kind}`
 
 
-
-        return connectDragSource(
-            <li key={kind} className={itemClassName}>
-                <div className={shapeClassName}></div>
-            </li>
-        )
-    }
+    return connectDragSource(
+      <li key={kind} className={itemClassName}>
+        <div className={shapeClassName}></div>
+      </li>
+    )
+  }
 }
 
 
@@ -41,18 +40,18 @@ class ToolboxItem extends React.Component {
 //
 
 const dragSource = {
-    beginDrag(props) {
-        return {
-            kind: props.kind
-        }
+  beginDrag(props) {
+    return {
+      kind: props.kind
     }
+  }
 }
 
 function dragSourceMapping(connect, monitor) {
-    return {
-        connectDragSource: connect.dragSource(),
-        isDragging: monitor.isDragging()
-    }
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }
 }
 
 export default DragSource('ToolboxItem', dragSource, dragSourceMapping)(ToolboxItem)

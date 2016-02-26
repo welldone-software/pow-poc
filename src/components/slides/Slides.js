@@ -1,8 +1,8 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {DropTarget, DragSource} from 'react-dnd'
 import {bindActionCreators} from 'redux'
-import * as actions from '../../store/actions';
+import * as actions from '../../store/actions'
 import Slide from './Slide'
 import SlidesToolbar from './SlidesToolbar'
 
@@ -11,10 +11,19 @@ import SlidesToolbar from './SlidesToolbar'
  *
  * Connected to the redux store.
  */
-class Slides extends React.Component {
+@connect(
+  state => ({
+    isOpen: state.sidebars.left,
+    slides: state.slides,
+    currentSlideId: state.currentSlide.id
+  }),
+  dispatch => ({actions: bindActionCreators(actions, dispatch)})
+)
+export default class Slides extends React.Component {
 
     render() {
-        const {
+
+      const {
             slides,
             currentSlideId,
             actions,
@@ -22,14 +31,14 @@ class Slides extends React.Component {
             isOpen
         } = this.props
 
-        const {
+      const {
             selectSlide,
             repositionSlide,
             addSlide,
             setSlideTitle
         } = actions
 
-        return (
+      return (
             <div className="slides">
                 <SlidesToolbar addSlide={addSlide} isOpen={isOpen} onClose={onClose}/>
                 <ul>
@@ -49,29 +58,3 @@ class Slides extends React.Component {
         )
     }
 }
-
-//
-// Redux mapping and wrapping
-//
-
-function mapStateToProps(state) {
-    return {
-        isOpen: state.sidebars.left,
-        slides: state.slides,
-        currentSlideId: state.currentSlide.id
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(actions, dispatch)
-    }
-}
-
-
-const ReduxSlides = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Slides)
-
-export default ReduxSlides
