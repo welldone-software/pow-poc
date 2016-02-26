@@ -33,8 +33,6 @@ const dropTarget = {
       return
     }
 
-    console.log('calling DOC_REPOSITION_SLIDE', dragId, hoverIndex)
-
     props.repositionSlide(dragId, hoverIndex)
 
     // Note: we're mutating the monitor item here!
@@ -54,6 +52,13 @@ const dropTarget = {
  * It can also be dragged to the editor, to make it the 'current' slide and to the recycle bin to delete it.
  *
  */
+@DropTarget(
+  'Slide',
+  dropTarget,
+  connect => ({
+    connectDropTarget: connect.dropTarget()
+  })
+)
 @DragSource(
   'Slide',
   {
@@ -68,15 +73,6 @@ const dropTarget = {
     isDragging: monitor.isDragging()
   })
 )
-
-@DropTarget(
-  'Slide',
-  dropTarget,
-  connect => ({
-    connectDropTarget: connect.dropTarget()
-  })
-)
-
 export default class Slide extends React.Component {
 
   static propTypes = {
@@ -110,10 +106,11 @@ export default class Slide extends React.Component {
     const onInlineEditChange = obj => onTitleChange(id, obj.title)
 
     return connectDragSource(connectDropTarget(
-      <li className={className} onDoubleClick={onSelect.bind(this, id)}>
+      <li className={className} onDoubleClick={onSelect.bind(this, id)} style={{backgroundSize: 'contain', backgroundImage: `url(${snapshot})`}}>
         <div><InlineEdit text={title} paramName="title" change={onInlineEditChange}/></div>
-        <img src={snapshot}/>
       </li>
     ))
   }
 }
+
+//       <img style={{marginLeft: '15%', height: '70%', width: '70%'}} src={snapshot}/>

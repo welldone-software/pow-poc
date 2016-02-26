@@ -21,11 +21,10 @@ function getSlideItems(slideId, document){
 export default {
 
   getInitialState(){
-    console.log('getInitialState', localStorage.document)
     const document = documentStorage.get()
     return {
       title: document.title,
-      slides: document.slides.map(s => ({id: s.id, title: s.title})),
+      slides: document.slides.map(s => ({id: s.id, title: s.title, snapshot: s.snapshot})),
       currentSlide: document.slides[0]
     }
   },

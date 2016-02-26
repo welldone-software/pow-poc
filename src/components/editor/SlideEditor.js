@@ -33,8 +33,6 @@ export default class SlideEditor extends React.Component {
 
     render() {
 
-      console.log('this.state', this.state)
-
       const {currentSlide, actions} = this.props
       const {id, title} = currentSlide
       const onTiltleChange = (data) => actions.setSlideTitle(id, data.title)
