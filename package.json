@@ -2,9 +2,8 @@
   "name": "powtoons-poc",
   "version": "1.0.0",
   "scripts": {
-    "clean": "rimraf dist",
-    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-    "build": "npm run clean && npm run build:webpack",
+    "rebuild": "cross-env NODE_ENV=production webpack --progress --config webpack.config.js",
+    "rebuild:dev": "cross-env NODE_ENV=development webpack --progress --config webpack.config.js",
     "start": "node devServer.js",
     "lint": "eslint src",
     "test": "mocha -r mock-local-storage --compilers js:babel-core/register --recursive",
@@ -30,6 +29,9 @@
     "eslint-plugin-react": "^3.11.3",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.13.3",
+    "getport": "^0.1.0",
+    "html-loader": "^0.4.3",
+    "html-webpack-plugin": "^2.9.0",
     "json-loader": "^0.5.4",
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
@@ -47,7 +49,6 @@
     "webpack-hot-middleware": "^2.6.0"
   },
   "dependencies": {
-    "fabric-webpack": "^1.6.0-rc.1",
     "html2canvas": "^0.5.0-beta4",
     "jquery": "^2.2.0",
     "lodash": "^4.0.1",
